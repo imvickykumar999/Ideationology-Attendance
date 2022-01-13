@@ -8,6 +8,7 @@ def index():
 
     if vid == None:
         vid = 'KZehm-meGMg'
+        
     return render_template('index.html', vid=vid)
 
 @app.errorhandler(404)
