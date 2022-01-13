@@ -16,4 +16,4 @@ def run():
     g = refv.get()
     g = g + 1
     refv.set(g)
-    return g
+    return g, url
