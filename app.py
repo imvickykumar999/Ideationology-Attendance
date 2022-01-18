@@ -7,12 +7,16 @@ def index():
     import pageview as pv
     up = pv.run()
 
+    import insta as i
+    l = i.followers()
+    print(l)
+
     vid = request.args.get('vid')
     if vid == None:
         vid = 'KZehm-meGMg'
 
     return render_template('index.html', vid=vid,
-                            g=up[0], url=up[1]
+                            g=up[0], url=up[1], followers=l[0]
                             )
 
 @app.errorhandler(404)
