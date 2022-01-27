@@ -25,26 +25,38 @@
     <center>
 
       <div class="jumbotron">
-
         <a target = '_blank' href="https://github.com/imvickykumar999">
           <h1>Vicky Kumar</h1>
         </a>
         <br><br>
 
-        <iframe width="420" height="315"
-          src="https://www.youtube.com/embed/sx_GVyYQud0">
+        <iframe width="720" height="405"
+          src="https://www.youtube.com/embed/CSulY72GiX4">
         </iframe>
 
-        <br><br>
+        <br><br><br>
         <a target = '_blank' href="{{url}}">
           <h2>Page Views = {{g}}</h2>
         </a>
-
-        <h2>
-          My Instagram followers : {{followers}}
-        </h2>
-
       </div>
+
+      <div id="vickscroll">
+        {% if scroll %}
+        <script>
+            document.location.hash = '#' + '{{ scroll }}';
+        </script>
+        {% endif %}
+      </div>
+
+      <br>
+      <div class="jumbotron">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdAkZFIRJACV3-9SFiJfn2ZI_k0UQ_j0uxgOX1-117yF42X0Q/viewform?embedded=true"
+          width="700" height="1300"
+          frameborder="0" marginheight="0"
+          marginwidth="0">Loading…
+        </iframe>
+      </div>
+
     </center>
   </body>
 </html>

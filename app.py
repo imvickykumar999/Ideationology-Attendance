@@ -15,7 +15,7 @@ def index():
     if vid == None:
         vid = 'KZehm-meGMg'
 
-    return render_template('index.html', vid=vid,
+    return render_template('index.html', vid=vid, scroll='vickscroll',
                             g=up[0], url=up[1], followers=l[0]
                             )
 
