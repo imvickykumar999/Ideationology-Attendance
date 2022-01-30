@@ -4,8 +4,6 @@
   <head>
 
     <meta charset="utf-8">
-    <!-- is a character encoding capable of encoding all possible characters (called code points) in Unicode -->
-
     <link rel="icon" href="static/online.png">
     <title>Vicky Kumar</title>
 
@@ -34,8 +32,8 @@
             }
         </script>
 
-        <div class="alert alert-danger" role="alert">
-          <h1>Search Video</h1>
+        <div class="alert alert-primary" role="alert">
+          <h1>Generate Video Link</h1>
           <br>
 
           <form>
@@ -43,7 +41,7 @@
             name="Name"
             id="txtName"
             style="height:40px; width:500px"
-            placeholder="Enter Video Title here, and Press Submit...">
+            placeholder="Enter Video Title or ID here...">
 
             <input type="button"
             value="Submit"
@@ -54,10 +52,11 @@
           <br>
           <div>
             <h5 id="p1">
-              Submit to Generate Link, then...
-              <br>
+              Press Submit to Generate Link, then...
+                <br>
               Copy Link and Paste in Browser.
             </h5>
+            <br>
           </div>
         </div>
 
@@ -65,8 +64,10 @@
         <iframe width="720" height="405"
           src="https://www.youtube.com/embed/{{vid}}">
         </iframe>
+      </div>
 
-        <br><br><br>
+      <br>
+      <div class="jumbotron">
         <a class="btn btn-success" data-toggle="collapse" href="#detail" role="button" aria-expanded="false" aria-controls="collapseExample">
           <h3>Click me to... <br>See Video Detail</h3>
         </a>
