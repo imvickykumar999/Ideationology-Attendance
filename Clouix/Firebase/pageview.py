@@ -1,9 +1,13 @@
 
 def run():
     from firebase_admin import credentials
-    import firebase_admin
+    import firebase_admin, os
 
-    cred = credentials.Certificate('ideationology-4c639-firebase-adminsdk-5hfwu-5806b97f02.json')
+    path = './Clouix/Firebase'
+    file = 'ideationology-4c639-firebase-adminsdk-5hfwu-5806b97f02.json'
+    dir = os.path.join(path, file)
+
+    cred = credentials.Certificate(dir)
     url = 'https://ideationology-4c639-default-rtdb.asia-southeast1.firebasedatabase.app/'
     path = {'databaseURL' : url}
 

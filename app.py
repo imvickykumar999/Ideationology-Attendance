@@ -4,19 +4,40 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    import pageview as pv
+
+    from Clouix.Firebase import pageview as pv
     up = pv.run()
 
-    import insta as i
-    l = i.followers()
-    print(l)
+    return render_template('index.html',
+                            g=up[0],
+                            url=up[1],
+                            )
 
-    vid = request.args.get('vid')
+
+@app.route('/youtube')
+def youtube():
+    import requests
+    from Clouix.YouTube import ytube
+
+    vid = request.args.get('q')
     if vid == None:
-        vid = 'KZehm-meGMg'
+        vid = 'CSulY72GiX4'
 
-    return render_template('index.html', vid=vid, scroll='form',
-                            g=up[0], url=up[1], followers=l[0]
+    vid = ytube.yts(q=vid, maxResults=1)
+    vid = vid['items'][0]['id']['videoId']
+
+    data = ytube.tvl(vid)
+    com = ytube.com(vid)
+
+    return render_template('youtube.html',
+                            vid=vid,
+                            data=data,
+                            com=com,
+                           )
+
+@app.route('/form')
+def form():
+    return render_template('form.html',
                             )
 
 @app.errorhandler(404)
