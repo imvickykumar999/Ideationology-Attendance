@@ -108,11 +108,37 @@ def vicks_bot():
 
 @app.route('/youtube')
 def youtube():
+    import requests
+    from Clouix.YouTube import ytube
+
+    vid = request.args.get('q')
+    if vid == None:
+        vid = 'CSulY72GiX4'
+
+    # vid = ytube.yts(q=vid)
+    # vid = vid['items'][0]['id']['videoId']
+
+    data = ytube.tvl(vid)
+    try:
+        com = ytube.com(vid)
+    except Exception as e:
+        com = {'error' : ['Comment is Disabled.']}
+
+    print(com)
+    return render_template('youtube.html',
+                            vid=vid,
+                            data=data,
+                            com=com,
+                           )
+
+
+@app.route("/ytube", methods=['POST', 'GET'])
+def ytube():
     try:
         import requests
         from Clouix.YouTube import ytube
 
-        vid = request.args.get('q')
+        vid = request.form['q']
         if vid == None:
             vid = 'CSulY72GiX4'
 
@@ -133,7 +159,6 @@ def youtube():
                                )
     except Exception as e:
         return ( render_template('404.html', e=e), 404 )
-
 
 @app.route('/form')
 def form():
