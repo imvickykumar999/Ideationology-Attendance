@@ -5,4 +5,4 @@ firebase_admin
 oauth2client
 gspread2
 google-api-python-client
-os-sys
+os-win
