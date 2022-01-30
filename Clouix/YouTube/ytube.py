@@ -1,6 +1,10 @@
 
-api_key = 'AIzaSyC3EsHgVkGg11WfvEgVYuamubsGsjq1n-I'
-# api_key = 'AIzaSyCcJX4qdbo9caqxZSKDmuBjNVWfvq8_Wcs'
+# api_key = 'AIzaSyC3EsHgVkGg11WfvEgVYuamubsGsjq1n-I'
+# The request cannot be completed because you have exceeded your quota
+
+api_key = 'AIzaSyCcJX4qdbo9caqxZSKDmuBjNVWfvq8_Wcs'
+
+# ------------------------------------------
 
 from googleapiclient.discovery import build
 youtube = build('youtube', 'v3',
@@ -63,5 +67,7 @@ def tvl(video_id = 'hlznpxNGFGQ'):
     data1.update(data2)
     data1.pop('thumbnails', None)
     data1.pop('localized', None)
+    data1.pop('description', None)
+    data1.pop('tags', None)
 
     return data1

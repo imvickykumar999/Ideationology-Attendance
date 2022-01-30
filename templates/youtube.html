@@ -25,6 +25,43 @@
     <center>
       <div class="jumbotron">
 
+        <script>
+            function testVariable() {
+              debugger
+              var strText = document.getElementById("txtName").value;
+              strText = 'https://vixtest.herokuapp.com/youtube?q=' + strText;
+              document.getElementById("p1").innerHTML = strText;
+            }
+        </script>
+
+        <div class="alert alert-danger" role="alert">
+          <h1>Search Video</h1>
+          <br>
+
+          <form>
+            <input type="text"
+            name="Name"
+            id="txtName"
+            style="height:40px; width:500px"
+            placeholder="Enter Video Title here, and Press Submit...">
+
+            <input type="button"
+            value="Submit"
+            id="btnSubmit"
+            onclick="testVariable()">
+          </form>
+
+          <br>
+          <div>
+            <h5 id="p1">
+              Submit to Generate Link, then...
+              <br>
+              Copy Link and Paste in Browser.
+            </h5>
+          </div>
+        </div>
+
+        <br><br>
         <iframe width="720" height="405"
           src="https://www.youtube.com/embed/{{vid}}">
         </iframe>

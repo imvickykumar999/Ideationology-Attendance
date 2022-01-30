@@ -16,24 +16,31 @@ def index():
 
 @app.route('/youtube')
 def youtube():
-    import requests
-    from Clouix.YouTube import ytube
+    try:
+        import requests
+        from Clouix.YouTube import ytube
 
-    vid = request.args.get('q')
-    if vid == None:
-        vid = 'CSulY72GiX4'
+        vid = request.args.get('q')
+        if vid == None:
+            vid = 'CSulY72GiX4'
 
-    vid = ytube.yts(q=vid, maxResults=1)
-    vid = vid['items'][0]['id']['videoId']
+        vid = ytube.yts(q=vid)
+        vid = vid['items'][0]['id']['videoId']
 
-    data = ytube.tvl(vid)
-    com = ytube.com(vid)
+        data = ytube.tvl(vid)
+        try:
+            com = ytube.com(vid)
+        except Exception as e:
+            com = {'error' : ['Comment is Disabled.']}
 
-    return render_template('youtube.html',
-                            vid=vid,
-                            data=data,
-                            com=com,
-                           )
+        print(com)
+        return render_template('youtube.html',
+                                vid=vid,
+                                data=data,
+                                com=com,
+                               )
+    except Exception as e:
+        return ( render_template('404.html', e=e), 404 )
 
 @app.route('/form')
 def form():
@@ -42,7 +49,8 @@ def form():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return ( render_template('404.html'), 404 )
+    e = 'Page not Found'
+    return ( render_template('404.html', e=e), 404 )
 
 if __name__ == '__main__':
     app.run(debug=True)
