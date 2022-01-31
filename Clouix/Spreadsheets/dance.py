@@ -23,6 +23,9 @@ def fetch():
     Name=['Date (Y/M/D)']
     for i in records_data:
         Name.append(i['Name'])
+
+    sheet_instance = sheet.get_worksheet(1)
+    sheet_instance.update('A1', [Name])
     return Name[1:]
 
 def mark(attend):
