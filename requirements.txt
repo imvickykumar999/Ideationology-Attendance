@@ -9,3 +9,4 @@ os-win
 secure-smtplib
 pandas
 numpy
+matplotlib
