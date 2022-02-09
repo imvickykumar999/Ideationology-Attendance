@@ -54,6 +54,7 @@ def attendance():
         print(appn)
 
         from Clouix.Spreadsheets import grapha
+        Name = dance.fetch()
         plotted = grapha.plotme(Name[1])
 
         return render_template('index.html',
