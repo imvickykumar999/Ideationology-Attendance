@@ -16,17 +16,18 @@ client = gspread.authorize(creds)
 url = 'https://docs.google.com/spreadsheets/d/1Va2O06m-sBdjHmxkvl4TpkC-ghm6U8jkFxhShDHDWLE/edit?hl=en&forcehl=1#gid=117935182'
 sheet = client.open_by_url(url)
 
-sheet_instance = sheet.get_worksheet(0)
-records_data = sheet_instance.get_all_records()
-
 def fetch():
+    sheet_instance = sheet.get_worksheet(0)
+    records_data = sheet_instance.get_all_records()
+    
     Name=['Date (Y/M/D)']
     for i in records_data:
         Name.append(i['Name'])
 
     sheet_instance = sheet.get_worksheet(1)
     sheet_instance.update('A1', [Name])
-    return Name[1:]
+    records_data = sheet_instance.get_all_records()
+    return Name[1:], records_data
 
 def mark(attend):
     import datetime
