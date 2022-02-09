@@ -4,7 +4,7 @@
 
 ---------------------------------------------------
 
-![Ss](https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/Screenshot_20220201-191812_Chrome.jpg)
+![image](https://user-images.githubusercontent.com/50515418/153212135-880e7b4a-79e9-4c90-92f2-33591f74820a.png)
 
 ---------------------------------------------------
 
