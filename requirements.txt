@@ -7,3 +7,5 @@ gspread
 google-api-python-client
 os-win
 secure-smtplib
+pandas
+numpy

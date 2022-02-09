@@ -42,21 +42,26 @@ def attendance():
         up = pv.run()
 
         from Clouix.Spreadsheets import dance
-        Name = dance.fetch()[0]
+        Name = dance.fetch()
         appn=[]
 
-        for i in Name:
+        for i in Name[0]:
             text = request.form.get(i)
             appn.append(text)
 
         appn = ['A' if v is None else 'P' for v in appn]
         attend = dance.mark(appn)
         print(appn)
+
+        from Clouix.Spreadsheets import grapha
+        plotted = grapha.plotme(Name[1])
+
         return render_template('index.html',
                                 g=up[0],
                                 url=up[1],
                                 added=True,
-                                Name=Name,
+                                Name=Name[0],
+                                plotted=plotted,
                                 )
     else:
         return render_template("404.html", e = 'Wrong OTP')

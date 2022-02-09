@@ -140,10 +140,35 @@
         </form>
       </div>
 
+      <br><br>
       <div class="jumbotron">
-        <img src="data:image/png;base64,{{plotted[0]}}">
+        <a target="_blank" href="https://docs.google.com/spreadsheets/d/1Va2O06m-sBdjHmxkvl4TpkC-ghm6U8jkFxhShDHDWLE/edit?hl=en&forcehl=1#gid=1251099130">
+          <img src="data:image/png;base64,{{plotted[0]}}">
+        </a>
         <br><br>
-        {{plotted[1]}}
+
+        <div class="alert alert-light" role="alert">
+          <br>
+
+          <table>
+          {% for key, value in plotted[1].items() %}
+             <tr>
+                <th>
+                  <div class="alert alert-success" role="alert">
+                    <h2>{{ key }}</h2>
+                  </div>
+                </th>
+
+                <td>
+                  <div class="alert alert-danger" role="alert">
+                    <h2>{{ value }}</h2>
+                  </div>
+                </td>
+             </tr>
+          {% endfor %}
+          </table>
+
+        </div>
       </div>
 
     </center>
