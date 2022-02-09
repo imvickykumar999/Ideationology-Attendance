@@ -25,6 +25,7 @@ def fetch():
 
     sheet_instance = sheet.get_worksheet(1)
     sheet_instance.update('A1', [Name])
+    # records_data = sheet_instance.get_all_records()
     return Name[1:]
 
 def mark(attend):
