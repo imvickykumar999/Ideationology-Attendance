@@ -10,3 +10,4 @@ secure-smtplib
 pandas
 numpy
 matplotlib
+tweepy

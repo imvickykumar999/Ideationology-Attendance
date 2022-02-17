@@ -68,6 +68,16 @@ def attendance():
         return render_template("404.html", e = 'Wrong OTP')
 
 
+@app.route('/tweet')
+def tweet():
+    try:
+        from Clouix.TwitterAPI import tweet_cast as tc
+        aid = tc.funaid()
+        return render_template('tweet.html', aid=aid)
+        
+    except Exception as e:
+            return ( render_template('404.html', e=e), 404 )
+
 @app.route('/bot')
 def bot():
     return render_template('bot.html',
