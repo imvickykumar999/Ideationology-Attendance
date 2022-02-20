@@ -1,10 +1,26 @@
 <!doctype html5>
 <html>
-<head>
-  <title>{{ username }} - Home</title>
-</head>
-<body>
-  <h2>Hello {{username}}</h2>
-  <p><a href="{{ url_for('logout', username=username) }}">Logout</a></p>
-</body>
+  <head>
+    <title>{{ username }} - Home</title>
+  </head>
+  <body>
+
+    <h2>Hello 
+      <span style="color: red;">
+        {{username}}
+      </span>
+    </h2>
+
+    <p>
+      <a href="{{ url_for('logout', username=username) }}">
+        Logout
+      </a>
+
+      <br><br>
+      <a href="/">
+        Go to <span style="color: green;">Home</span>
+      </a>
+    </p>
+    
+  </body>
 </html>
