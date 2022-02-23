@@ -1,26 +1,37 @@
+{% extends "base.html"%}
+{% block content %}
+
 <!doctype html5>
 <html>
   <head>
     <title>{{ username }} - Home</title>
   </head>
+
   <body>
+    <center>
+      <div class="jumbotron">
+        <div class="container">
+          <div class="alert alert-light" role="alert">
 
-    <h2>Hello 
-      <span style="color: red;">
-        {{username}}
-      </span>
-    </h2>
+            <div class="alert alert-success" role="alert">
+              <h2>Hello 
+                <span style="color: red;">
+                  {{username}}
+                </span>
+              </h2>
+            </div>
 
-    <p>
-      <a href="{{ url_for('logout', username=username) }}">
-        Logout
-      </a>
+            <div class="alert alert-danger" role="alert">
+              <a href="{{ url_for('logout', username=username) }}">
+                Logout
+              </a>
+            </div>
 
-      <br><br>
-      <a href="/">
-        Go to <span style="color: green;">Home</span>
-      </a>
-    </p>
-    
+          </div>
+        </div>
+      </div>
+    </center>
   </body>
 </html>
+
+{% endblock %}

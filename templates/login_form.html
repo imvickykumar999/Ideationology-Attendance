@@ -1,3 +1,6 @@
+{% extends "base.html"%}
+{% block content %}
+
 <!doctype html5>
 <html>
 
@@ -5,44 +8,61 @@
     <title>Login</title>
   </head>
   <body>
+    <center>
+      <div class="jumbotron">
+        <div class="container">
+          <div class="alert alert-light" role="alert">
 
-    <h2>Login 
-      <span style="color: red;">
-        ( Page Under Contruction )
-      </span>
-    </h2>
+            <div class="alert alert-primary" role="alert">
+              <h2>Login 
+                <span style="color: red;">
+                  Here
+                </span>
+              </h2>
+            </div>
 
-    <form id="login" action="{{ url_for('login')}}" method="post">
-      Username :  <input type="text" id="username" name="username" />
-      <br><br>
-      Password : <input type="password" id="password" name="password" />
-      <br><br>
-      <input type="submit" id="submit" text="Login" />
-    </form>
+            <div class="alert alert-success" role="alert">
+              <form id="login" action="{{ url_for('login')}}" method="post">
 
-    {% with messages = get_flashed_messages() %}
-      {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-        </ul>
-      {% endif %}
-    {% endwith %}
+                Username :  <input type="text" id="username" name="username" />
+                <br><br>
+                Password : <input type="password" id="password" name="password" />
+                <br><br>
+                <!-- <input type="submit" id="submit" text="Login" /> -->
+              
+                <input type="image"
+                  src="../static/submit.png"
+                  width="200"
+                  height="60"
+                  alt="submit"/>
+              </form>
+            </div>
 
-    <br>
-    <p>
-      New User ?
-      <br>
-      <a href="{{ url_for('signup') }}">
-        Signup <span style="color: red;">here</span>
-      </a>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for message in messages %}
+                  <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
 
-      <br><br>
-      <a href="/">
-        Go to <span style="color: green;">Home</span>
-      </a>
-    </p>
+            <div class="alert alert-danger" role="alert">
+              New User ?
+              <br>
 
+              <a href="{{ url_for('signup') }}">
+                Signup <span style="color: red;">here</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </center>
   </body>
 </html>
+
+{% endblock %}
