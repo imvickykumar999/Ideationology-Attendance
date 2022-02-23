@@ -1,6 +1,6 @@
-# [Ideationology Lab](https://imvickykumar999.herokuapp.com/)
+# >>> [Ideationology Lab](https://ideationology.herokuapp.com/)
 
-![ss](https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/ideationology.jpg?raw=true)
+[![ss](https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/ideationology.jpg?raw=true)](https://ideationology.herokuapp.com/)
 
 --------------------------------------------------
 
