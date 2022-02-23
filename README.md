@@ -1,4 +1,10 @@
-# [Google Workspace](https://imvickykumar999.github.io/Ideationology-Attendance/)
+# [Ideationology Lab](https://imvickykumar999.herokuapp.com/)
+
+![ss](https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/ideationology.jpg?raw=true)
+
+--------------------------------------------------
+
+## [Google Workspace](https://imvickykumar999.github.io/Ideationology-Attendance/)
 
 ![image](https://user-images.githubusercontent.com/50515418/154859475-3cbf8449-a2a2-4825-a87a-dc57b8f05fc1.png)
 
