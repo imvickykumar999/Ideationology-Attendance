@@ -271,6 +271,9 @@ def signup():
         password = request.form['password']
         dp_url = request.form['dp_url'].strip()
 
+        if dp_url == '':
+            dp_url = '../static/Profile_NULL.png'
+
         bio = request.form['bio']
         # print('=====>>> ', type(bio))
         if bio is None:
