@@ -34,7 +34,7 @@
           <div class="alert alert-light" role="alert">
 
             <br>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-success" role="alert">
               <h2>Hello 
                 <a target="_blank" href="https://github.com/{{username}}">
                   <span style="color: red;">
@@ -46,14 +46,14 @@
             <br>
 
             <div class="image-cropper">
-              <a target="_blank" href="https://github.com/{{username}}">
+              <a target="_blank" href="https://api.whatsapp.com/send?text=https://ideationology.herokuapp.com{{ url_for('profile', username=username) }}">
                 <img style="height: 100%;" src="{{dp_url}}">
               </a>
             </div>
             <br>
 
             <a target="_blank" href="https://api.whatsapp.com/send?text=https://ideationology.herokuapp.com{{ url_for('profile', username=username) }}">
-              <h5> ( Click me to Share profile on WhatsApp ) </h5>
+              <h5> ( Click on DP to Share Profile on WhatsApp ) </h5>
             </a>
             <br>
 
