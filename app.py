@@ -272,7 +272,7 @@ def signup():
         dp_url = request.form['dp_url'].strip()
 
         if dp_url == '':
-            dp_url = '../static/Profile_NULL.png'
+            dp_url = 'https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/Profile_NULL.png?raw=true'
 
         bio = request.form['bio']
         # print('=====>>> ', type(bio))
