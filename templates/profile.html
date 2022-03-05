@@ -1,0 +1,66 @@
+{% extends "base.html"%}
+{% block content %}
+
+<!doctype html5>
+<html>
+  <head>
+    <title>{{ username }} - Home</title>
+
+    <style>
+      .image-cropper {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <center>
+
+      <div class="jumbotron">
+        <div class="container">
+          <div class="alert alert-light" role="alert">
+
+            <br>
+            <div class="alert alert-danger" role="alert">
+              <h2>Hello 
+                <span style="color: red;">
+                  {{username}}
+                </span>
+              </h2>
+            </div>
+            <br>
+
+            <div class="image-cropper">
+              <img style="height: 100%;" src="{{dp_url}}">
+            </div>
+            <br>
+
+            <a target="_blank" href="https://api.whatsapp.com/send?text=https://ideationology.herokuapp.com{{ url_for('profile', username=username) }}">
+              <h5> ( Click me to Share profile on WhatsApp ) </h5>
+            </a>
+            <br>
+
+            <div class="alert alert-primary" role="alert">
+              <h2 style="color: red;">
+                <strong>
+                  --- Bio ---
+                </strong>
+              </h2> 
+              <h3 style="color: blue;">{{bio}}</h3>
+            </div>
+            <br>
+
+          </div>
+        </div>
+      </div>
+
+    </center>
+  </body>
+</html>
+
+{% endblock %}

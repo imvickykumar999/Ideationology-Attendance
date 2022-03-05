@@ -12,8 +12,8 @@ def run():
     path = {'databaseURL' : url}
 
     if not firebase_admin._apps:
-        print('========> ', firebase_admin._apps)
-        default_app = firebase_admin.initialize_app(cred, path)
+        # print('========> ', firebase_admin._apps)
+        firebase_admin.initialize_app(cred, path)
 
     from firebase_admin import db
     refv = db.reference('counter/views')

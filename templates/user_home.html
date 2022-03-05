@@ -5,31 +5,113 @@
 <html>
   <head>
     <title>{{ username }} - Home</title>
+
+    <style>
+      .image-cropper {
+        width: 300px;
+        height: 300px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+      }
+    </style>
+
   </head>
 
   <body>
     <center>
+
       <div class="jumbotron">
         <div class="container">
           <div class="alert alert-light" role="alert">
 
-            <div class="alert alert-success" role="alert">
+            <br>
+            <div class="alert alert-danger" role="alert">
               <h2>Hello 
                 <span style="color: red;">
                   {{username}}
                 </span>
               </h2>
             </div>
+            <br>
+
+            <div class="image-cropper">
+              <a target="_blank" href="{{ url_for('profile', username=username) }}">
+                <img style="height: 100%;" src="{{dp_url}}">
+              </a>
+            </div>
+            <br>
+
+            <a target="_blank" href="{{ url_for('profile', username=username) }}">
+              <h5> ( Click on DP to share Profile ) </h5>
+            </a>
+            <br>
+
+            <div class="alert alert-primary" role="alert">
+              <h2 style="color: red;">
+                <strong>
+                  --- Bio ---
+                </strong>
+              </h2> 
+              <h3 style="color: blue;">{{bio}}</h3>
+            </div>
+            <br>
 
             <div class="alert alert-danger" role="alert">
+              <h4 style="color: red;">Account Balance : {{disp}}</h4>
+            </div>
+            <br>
+
+            <div class="alert alert-success" role="alert">  
+              <br>
+              <form action="/account/{{username}}" method="post">
+                <div class="alert alert-warning" role="alert">
+                  <br>
+                  Enter Amount :  <input type="text" name="money" required>
+                  <br><br>
+                  Send to Username : <input type="text" name="pay" required>
+                  <br><br>
+                </div>
+
+                <br>
+                <input type="image"
+                src="../static/submit.png"
+                width="200"
+                height="60"
+                alt="submit"/>
+                
+                <!-- <input type="submit" text="Send Money" /> -->
+              </form>
+            </div>
+            <br>
+
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class=flashes>
+                  {% for message in messages %}
+                    <li>
+                      <a href="/user/{{username}}">
+                        <h4>{{ message }}</h4>
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+            <br>
+            <div class="alert alert-danger" role="alert">
               <a href="{{ url_for('logout', username=username) }}">
-                Logout
+                <h3>
+                  Logout
+                </h3>
               </a>
             </div>
 
           </div>
         </div>
       </div>
+
     </center>
   </body>
 </html>
