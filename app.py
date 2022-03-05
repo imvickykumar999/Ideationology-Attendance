@@ -365,6 +365,7 @@ def profile(username):
                             username=username,
                             bio=user.bio,
                             dp_url=user.dp_url,
+                            scroll='vickscroll',
                             )
 
 

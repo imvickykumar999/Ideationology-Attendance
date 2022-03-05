@@ -19,8 +19,16 @@
   </head>
 
   <body>
-    <center>
+    <div id="vickscroll">
+      {% if scroll %}
+      <script>
+          document.location.hash = '#' + '{{ scroll }}';
+      </script>
+      {% endif %}
+    </div>
+    <!-- scroll='vickscroll', -->
 
+    <center>
       <div class="jumbotron">
         <div class="container">
           <div class="alert alert-light" role="alert">
