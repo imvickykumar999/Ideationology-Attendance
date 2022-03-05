@@ -35,13 +35,13 @@
 
             <br>
             <div class="alert alert-danger" role="alert">
-              <a target="_blank" href="https://github.com/{{username}}">
-                <h2>Hello 
+              <h2>Hello 
+                <a target="_blank" href="https://github.com/{{username}}">
                   <span style="color: red;">
                     {{username}}
                   </span>
-                </h2>
-              </a>
+                </a>
+              </h2>
             </div>
             <br>
 
@@ -67,10 +67,41 @@
             </div>
             <br>
 
+            <div class="alert alert-danger" role="alert">
+              <a href="{{ url_for('login') }}">
+                <h4>
+                  Login
+                </h4>
+              </a>
+            </div>
           </div>
+
+          <br><br>
+          <div class="alert alert-warning" role="alert">
+            <br>
+              <h2>
+                <em>
+                  <strong>
+                    Other User's Profile
+                  </strong>
+                </em>
+              </h2>
+            <br>
+
+            {% for i in friend_list %}
+              <div class="alert alert-light" role="alert">
+                <a target="_blank" href="/profile/{{i}}">
+                  <h4>
+                    {{ i }}
+                  </h4>
+                </a>
+              </div>
+              <br>
+            {% endfor %}
+          </div>
+
         </div>
       </div>
-
     </center>
   </body>
 </html>

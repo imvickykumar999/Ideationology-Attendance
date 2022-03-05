@@ -15,6 +15,8 @@ import firebase_admin
 if not firebase_admin._apps:
     firebase_admin.initialize_app(cred, path)
 
+def friends():
+    return db.reference(f'Bank_Account/User').get()
 
 class Bank_Account:
     def __init__(self, username):

@@ -360,10 +360,15 @@ def user_home(username):
 
 @app.route("/profile/<username>")
 def profile(username):
+
+    from Clouix.Firebase import flower as fire
+    friend_list = fire.friends().keys()
+
     user = User.query.filter_by(username=username).first()
     return render_template("profile.html",
                             username=username,
                             bio=user.bio,
+                            friend_list=friend_list,
                             dp_url=user.dp_url,
                             scroll='vickscroll',
                             )
