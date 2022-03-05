@@ -36,7 +36,7 @@
 
 ## [Login / Signup](https://ideationology.herokuapp.com/login/)
 
-![image](https://user-images.githubusercontent.com/50515418/154859565-59e6e7bb-8c40-48a0-8b7c-34860d867382.png)
+![image](https://user-images.githubusercontent.com/50515418/156896067-9aabe0c8-5b9f-43cf-bdfb-452a9fc9c94b.png)
 
 ----------------------------------------------
 
