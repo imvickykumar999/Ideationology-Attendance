@@ -275,8 +275,8 @@ def signup():
             dp_url = 'https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/Profile_NULL.png?raw=true'
 
         bio = request.form['bio']
-        # print('=====>>> ', type(bio))
-        if bio is None:
+        print('=====>>> ', type(bio))
+        if bio == '':
             bio = 'hey...'
             
         if not (username and password):
