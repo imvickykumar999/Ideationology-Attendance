@@ -25,6 +25,7 @@ class User(db.Model):
     username = db.Column(db.String(100), unique=True, nullable=False)
     bio = db.Column(db.String(500), nullable=True)
     dp_url = db.Column(db.String(600), nullable=True)
+    person = db.Column(db.String(600), nullable=True)
     pass_hash = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
@@ -57,16 +58,17 @@ def index():
 def attendance():
 
     otp = request.form['otp'].strip()
+    auth_check = request.form['auth_check'].strip()
+
     f=open("otp.txt",'r')
     f = f.read()
     geto = f[:4]
-    person = f[4:].split('@')[0]
 
     f = open("otp.txt", "w")
     f.write('-')
     f.close()
 
-    if otp == geto and otp != '-':
+    if otp == geto and otp != '-' and auth_check == 'auth_check':
         from Clouix.Firebase import pageview as pv
         up = pv.run()
 
@@ -235,8 +237,12 @@ def vicksmail():
 @app.route("/mail_sent", methods=['POST'])
 def mail_sent():
     from Clouix.OTPmail import verify
-    verify.getotp()
-    return render_template("mailsent.html", sent='yes')
+    toaddr = request.form['toaddr']
+
+    # if toaddr in ["18erecs080.vicky@rietjaipur.ac.in", ]:
+    sent = 'yes'
+    verify.getotp(toaddr = toaddr)
+    return render_template("mailsent.html", sent = sent)
 
 @app.route('/form')
 def form():
@@ -267,40 +273,57 @@ def signup():
     """
 
     if request.method == "POST":
-        username = request.form['username']
-        password = request.form['password']
-        dp_url = request.form['dp_url'].strip()
 
-        if dp_url == '':
-            dp_url = 'https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/Profile_NULL.png?raw=true'
+        otp = request.form['otp'].strip()
+        f=open("otp.txt",'r')
+        f = f.read()
+        geto = f[:4]
+        person = f[4:].split('@')[0]
 
-        bio = request.form['bio']
-        print('=====>>> ', type(bio))
-        if bio == '':
-            bio = 'hey...'
+        f = open("otp.txt", "w")
+        f.write('-')
+        f.close()
+
+        if otp == geto and otp != '-':
+
+            username = request.form['username']
+            password = request.form['password']
+            dp_url = request.form['dp_url'].strip()
+
+            if dp_url == '':
+                dp_url = 'https://github.com/imvickykumar999/Ideationology-Attendance/blob/main/static/Profile_NULL.png?raw=true'
+
+            bio = request.form['bio']
+            if bio == '':
+                bio = 'hey...'
+                
+            if not (username and password):
+                flash("Username or Password cannot be empty")
+                return redirect(url_for('signup'))
+            else:
+                username = username.strip()
+                password = password.strip()
+
+            # Returns salted pwd hash in format : method$salt$hashedvalue
+            hashed_pwd = generate_password_hash(password, 'sha256')
+            # print(hashed_pwd)
             
-        if not (username and password):
-            flash("Username or Password cannot be empty")
-            return redirect(url_for('signup'))
+            new_user = User(username=username, bio=bio,
+                         pass_hash=hashed_pwd,
+                         person=person,
+                         dp_url=dp_url)
+            db.session.add(new_user)
+
+            try:
+                db.session.commit()
+            except sqlalchemy.exc.IntegrityError:
+                flash("Username {u} is not available.".format(u=username))
+                return redirect(url_for('signup'))
+
+            flash("User account has been created.")
+            return redirect(url_for("login"))
         else:
-            username = username.strip()
-            password = password.strip()
-
-        # Returns salted pwd hash in format : method$salt$hashedvalue
-        hashed_pwd = generate_password_hash(password, 'sha256')
-        # print(hashed_pwd)
-        
-        new_user = User(username=username, bio=bio, pass_hash=hashed_pwd, dp_url=dp_url)
-        db.session.add(new_user)
-
-        try:
-            db.session.commit()
-        except sqlalchemy.exc.IntegrityError:
-            flash("Username {u} is not available.".format(u=username))
-            return redirect(url_for('signup'))
-
-        flash("User account has been created.")
-        return redirect(url_for("login"))
+            flash("It's either Wrong, or Expired OTP.")
 
     return render_template("signup.html")
 
@@ -349,10 +372,13 @@ def user_home(username):
     from Clouix.Firebase import flower as fire
     obj = fire.Bank_Account(username)
     user = User.query.filter_by(username=username).first()
-
+    
+    friend_list = fire.friends().keys()
     return render_template("user_home.html",
                             username=username,
                             bio=user.bio,
+                            friend_list=friend_list,
+                            person=user.person,
                             dp_url=user.dp_url,
                             disp = obj.display(),
                             )
@@ -364,14 +390,19 @@ def profile(username):
     from Clouix.Firebase import flower as fire
     friend_list = fire.friends().keys()
 
-    user = User.query.filter_by(username=username).first()
-    return render_template("profile.html",
-                            username=username,
-                            bio=user.bio,
-                            friend_list=friend_list,
-                            dp_url=user.dp_url,
-                            scroll='vickscroll',
-                            )
+    try:
+        user = User.query.filter_by(username=username).first()
+        return render_template("profile.html",
+                                username=username,
+                                bio=user.bio,
+                                friend_list=friend_list,
+                                dp_url=user.dp_url,
+                                person=user.person,
+                                scroll='vickscroll',
+                                )
+    except:
+        e = 'Username does not Exist.'
+        return ( render_template('404.html', e=e), 404 )
 
 
 @app.route("/account/<username>", methods=["GET", "POST"])
@@ -385,6 +416,7 @@ def user_account(username):
 
     money = float(request.form['money'])
     from Clouix.Firebase import flower as fire
+    friend_list = fire.friends().keys()
 
     '''
     # flower as fire
@@ -397,9 +429,9 @@ def user_account(username):
 
     obj = fire.Bank_Account(username)
     pay = request.form['pay']
-    obj_pay = fire.Bank_Account(pay)
 
-    if money>0:
+    if money>0 and pay in friend_list:
+        obj_pay = fire.Bank_Account(pay)
         obj_pay.deposit(money)
         disp = obj.withdraw(money)
 
@@ -410,11 +442,16 @@ def user_account(username):
     else:
         disp = obj.display()
         flash("Amount should NOT be Negative number.")
+        flash("... or, Username must exist, choose it from below list.")
 
     user = User.query.filter_by(username=username).first()
+    friend_list = fire.friends().keys()
+
     return render_template("user_home.html", 
                             username=username,
                             bio=user.bio,
+                            friend_list=friend_list,
+                            person=user.person,
                             dp_url=user.dp_url,
                             disp = disp,
                             )

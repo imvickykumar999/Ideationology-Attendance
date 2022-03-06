@@ -1,13 +1,12 @@
 
-def getotp():
+# https://myaccount.google.com/u/2/lesssecureapps?pli=1&rapt=AEjHL4OrmY56qrCa2BRpYcl5KAiKM2Z8MiagTKnjv3qij9BQMzr06ROht1youXspmkpckFY9rMHL5skIgNj9FogNpjjDgf9YBg
+
+def getotp(toaddr = "18erecs080.vicky@rietjaipur.ac.in"):
     import smtplib
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
-    from email.mime.base import MIMEBase
-    from email import encoders
 
     fromaddr = "sagar.sws2000@gmail.com"
-    toaddr = "18erecs080.vicky@rietjaipur.ac.in"
 
     msg = MIMEMultipart()
     msg['From'] = fromaddr
@@ -42,7 +41,7 @@ def getotp():
     msg.attach(MIMEText(body, 'html'))
     s = smtplib.SMTP('smtp.gmail.com', 587)
     s.starttls()
-    s.login(fromaddr, "Sagarsws2000@")
+    s.login(fromaddr, "Sagarsws2999@")
 
     text = msg.as_string()
     s.sendmail(fromaddr, toaddr, text)

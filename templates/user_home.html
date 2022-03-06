@@ -30,7 +30,7 @@
               <h2>Hello 
                 <a target="_blank" href="https://github.com/{{username}}">
                   <span style="color: red;">
-                    {{username}}
+                    {{person}}
                   </span>
                 </a>
               </h2>
@@ -60,7 +60,15 @@
             <br>
 
             <div class="alert alert-danger" role="alert">
-              <h4 style="color: red;">Account Balance : {{disp}}</h4>
+              <a href="https://console.firebase.google.com/u/0/project/ideationology-4c639/database/ideationology-4c639-default-rtdb/data/~2FBank_Account~2FUser">
+                <h5 style="color: red;">
+                  Account Balance
+                </h5>
+              </a>
+
+              <h2>
+                {{disp}}
+              </h2>
             </div>
             <br>
 
@@ -69,10 +77,14 @@
               <form action="/account/{{username}}" method="post">
                 <div class="alert alert-warning" role="alert">
                   <br>
-                  Enter Amount :  <input type="text" name="money" required>
-                  <br><br>
-                  Send to Username : <input type="text" name="pay" required>
-                  <br><br>
+
+                  <h5>Enter Amount</h5>
+                  <input type="text" name="money" required>
+                  <br><br><br>
+
+                  <h5>Send to Username</h5> 
+                  <input type="text" name="pay" required>
+                  <br><br><br>
                 </div>
 
                 <br>
@@ -93,15 +105,15 @@
                   {% for message in messages %}
                     <li>
                       <a href="/user/{{username}}">
-                        <h4>{{ message }}</h4>
+                        <h5>{{ message }}</h5>
                       </a>
                     </li>
+                    <br><br>
                   {% endfor %}
                 </ul>
               {% endif %}
             {% endwith %}
 
-            <br>
             <div class="alert alert-danger" role="alert">
               <a href="{{ url_for('logout', username=username) }}">
                 <h3>
@@ -111,6 +123,37 @@
             </div>
 
           </div>
+          <br><br>
+
+          <div class="alert alert-warning" role="alert">
+            <br>
+              <h2>
+                <em>
+                  <strong style="color: green;">
+                    -- Available Username --
+                  </strong>
+                </em>
+              </h2>
+            <br><br>
+
+            {% for i in friend_list %}
+              <div class="alert alert-light" role="alert">
+                <h3 style="color: red;">
+                  {{ i }}
+                </h3>
+
+                <br>
+                <a target="_blank" href="/profile/{{i}}">
+                  <h6>
+                    Show Profile
+                  </h6>
+                </a>
+
+              </div>
+              <br>
+            {% endfor %}
+          </div>
+
         </div>
       </div>
 

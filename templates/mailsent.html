@@ -12,44 +12,51 @@
 </head>
 
 <body>
-
   <center>
     <div class="jumbotron jumbotron">
 
-      {% if sent == 'yes' %}
-        <div class="jumbotron jumbotron-fluid">
-          <div class="container">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
 
-            <div class="alert alert-danger" role="alert">
-              <a target="_blank" href="https://mail.google.com/mail/u/2/#inbox">
-                <h1 style="color:red;">
-                  <strong>
+          <div class="alert alert-danger" role="alert">
+            <a target="_blank" href="https://mail.google.com/mail/u/2/#inbox">
+              <h1 style="color:red;">
+                <strong>
+                  {% if sent == 'yes' %}
                     OTP has been sent
-                  </strong>
-                </h1>
-              </a>
-            </div>
+                  {% elif sent == 'unknown' %}
+                    Unknown Admin
+                  {% endif %}
+                </strong>
+              </h1>
+            </a>
           </div>
         </div>
-      {% endif %}
+      </div>
 
       <br>
         <form method="post" action="/mail_sent">
           <div class="alert alert-danger" role="alert">
             <div class="alert alert-primary" role="alert">
+              
+              <br>
+              <h2>Enter Email Address</h2>
+              <input style="height:30px; width:300px"
+              type="text" name="toaddr" required>
+              <br><br>
 
-              <h1 style="color:blue;">
+              <h style="color:blue;">
                 <strong>
                   Press Send Button<br>to get OTP
                 </strong>
-              </h1>
+              </h3>
 
               <br>
             </div>
 
             <input type="image"
-                   src="../static/send.png"
-                   alt="submit"/>
+              src="../static/send.png"
+              alt="submit"/>
 
           </div>
       </form>
