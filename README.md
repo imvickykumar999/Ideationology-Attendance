@@ -34,9 +34,9 @@
 
 ---------------------------------------------------
 
-## [Login / Signup](https://ideationology.herokuapp.com/login/)
+## [Login / Signup](https://ideationology.herokuapp.com/login/) and, Edit Profile
 
-![image](https://user-images.githubusercontent.com/50515418/156896067-9aabe0c8-5b9f-43cf-bdfb-452a9fc9c94b.png)
+[![image](https://user-images.githubusercontent.com/50515418/156896067-9aabe0c8-5b9f-43cf-bdfb-452a9fc9c94b.png)](https://ideationology.herokuapp.com/profile/imvickykumar999#vickscroll)
 
 ----------------------------------------------
 
