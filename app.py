@@ -430,7 +430,7 @@ def user_account(username):
     obj = fire.Bank_Account(username)
     pay = request.form['pay']
 
-    if money>0 and pay in friend_list:
+    if money >=1 and pay in friend_list:
         obj_pay = fire.Bank_Account(pay)
         obj_pay.deposit(money)
         disp = obj.withdraw(money)
@@ -441,8 +441,8 @@ def user_account(username):
 
     else:
         disp = obj.display()
-        flash("Amount should NOT be Negative number.")
-        flash("... or, Username must exist, choose it from below list.")
+        flash("Amount should be >= 1 rupee")
+        flash("Username must exist, choose it from below list.")
 
     user = User.query.filter_by(username=username).first()
     edit_bio = request.form['edit_bio']
