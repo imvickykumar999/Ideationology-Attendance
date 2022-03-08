@@ -445,8 +445,19 @@ def user_account(username):
         flash("... or, Username must exist, choose it from below list.")
 
     user = User.query.filter_by(username=username).first()
-    friend_list = fire.friends().keys()
+    edit_bio = request.form['edit_bio']
+    edit_dp = request.form['edit_dp']
+    print('------> ', user.dp_url)
 
+    if edit_dp != '':
+        user.dp_url = edit_dp # editing dp url...
+        db.session.commit() 
+
+    if edit_bio != '':
+        user.bio = edit_bio # editing bio...
+        db.session.commit() 
+
+    friend_list = fire.friends().keys()
     return render_template("user_home.html", 
                             username=username,
                             bio=user.bio,
