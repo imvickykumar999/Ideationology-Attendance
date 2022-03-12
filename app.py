@@ -129,10 +129,24 @@ def chat_sent(username):
         return redirect(url_for("login"))
 
     from Clouix.Firebase import chat
-    send = request.form['firechat']
+    send = request.form['firechat'].strip()
 
     if send != '':
         chat.send_mess(username, send)
+    
+    resp = request.form.get('ques')
+    # print('--->> ', resp)
+
+    if resp == "True":
+        import wikipedia
+        try:
+            send = wikipedia.summary(send, sentences=2)
+
+        # except wikipedia.exceptions.WikipediaException:
+        except Exception as e:
+            send=str(e)
+        
+    chat.send_mess('Wikipedia Bot', send)
     return render_template('chat.html', 
                            ref=chat.get_mess(),
                            username=username,
