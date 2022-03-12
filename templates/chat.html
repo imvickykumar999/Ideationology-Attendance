@@ -142,9 +142,9 @@
                 </a>
 
                 <br><br><br><br>
-                <div class="alert alert-primary" role="alert">
+                <div class="alert alert-warning" role="alert">
                     <br><br>
-                    <form method="post"  action="/chat_sent/{{username}}">
+                    <form method="post" action="/chat_sent/{{username}}">
                         
                         <h1>
                             <strong style="color: red;">
@@ -179,6 +179,18 @@
                         height="60"
                         alt="submit"/>                    
                     </form>
+                </div>
+
+                <br><br>
+                <div class="alert alert-danger" role="alert">
+                    
+                    <h2>Exit Group Chat</h2>
+                    <br>
+                    <a href="{{ url_for('logout', username=username) }}">
+                        <h3>
+                        Logout
+                        </h3>
+                    </a>
                 </div>
 
             </div>

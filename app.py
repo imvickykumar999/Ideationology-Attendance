@@ -407,12 +407,10 @@ def login():
 
 @app.route("/user/<username>")
 def user_home(username):
-    """
-    Home page for validated users.
 
-    """
     if not session.get(username):
-        abort(401)
+        flash("First Login to Send Money")
+        return redirect(url_for("login"))
 
     from Clouix.Firebase import flower as fire
     obj = fire.Bank_Account(username)
