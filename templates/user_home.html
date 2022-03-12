@@ -160,31 +160,52 @@
 
             <div class="alert alert-warning" role="alert">
               <br>
-                <h2>
-                  <em>
-                    <strong style="color: green;">
-                      -- Available Username --
-                    </strong>
-                  </em>
-                </h2>
+
+              <a class="btn btn-warning"
+                  data-toggle="collapse"
+                  href="#collapseProfile"
+                  role="button">
+
+                  <h2>
+                    <em>
+                      <strong>
+                        -- Available Username --
+                      </strong>
+                    </em>
+                  </h2>
+                </a>
+
               <br><br>
+              <div class="collapse" id="collapseProfile">
+                {% for i in friend_list %}
+                  <div class="alert alert-light" role="alert">
+                    <h3 style="color: red;">
+                      {{ i }}
+                    </h3>
 
-              {% for i in friend_list %}
-                <div class="alert alert-light" role="alert">
-                  <h3 style="color: red;">
-                    {{ i }}
-                  </h3>
+                    <br>
+                    <a target="_blank" href="/profile/{{i}}">
+                      <h6>
+                        Show Profile
+                      </h6>
+                    </a>
 
+                  </div>
                   <br>
-                  <a target="_blank" href="/profile/{{i}}">
-                    <h6>
-                      Show Profile
-                    </h6>
-                  </a>
+                {% endfor %}
+              </div>
 
-                </div>
-                <br>
-              {% endfor %}
+              <br>
+              <div class="alert alert-danger" role="alert">
+                <a target="_blank" href="{{ url_for('chat', username=username) }}">
+                  <h3>
+                    <em>
+                      Enter Group Chat
+                    </em>
+                  </h3>
+                </a>
+              </div>
+
             </div>
 
           </div>

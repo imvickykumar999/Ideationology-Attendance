@@ -109,6 +109,36 @@ def tweet():
     except Exception as e:
             return ( render_template('404.html', e=e), 404 )
 
+
+@app.route('/chat/<username>')
+def chat(username):
+    from Clouix.Firebase import chat
+
+    ref = chat.get_mess()
+    return render_template('chat.html',
+                            username=username,
+                            ref=ref,
+                          )
+
+@app.route('/chat_sent/<username>', methods=['POST', 'GET'])
+def chat_sent(username):
+
+    if not session.get(username):
+        # abort(401)
+        flash("First Login to Enter Group Chat.")
+        return redirect(url_for("login"))
+
+    from Clouix.Firebase import chat
+    send = request.form['firechat']
+
+    if send != '':
+        chat.send_mess(username, send)
+    return render_template('chat.html', 
+                           ref=chat.get_mess(),
+                           username=username,
+                          )
+
+
 @app.route('/bot')
 def bot():
     return render_template('bot.html',
