@@ -141,12 +141,13 @@ def chat_sent(username):
         import wikipedia
         try:
             send = wikipedia.summary(send, sentences=2)
+            chat.send_mess('Wikipedia Bot', send)
 
         # except wikipedia.exceptions.WikipediaException:
         except Exception as e:
             send=str(e)
+            chat.send_mess('Wikipedia Bot', send)
         
-    chat.send_mess('Wikipedia Bot', send)
     return render_template('chat.html', 
                            ref=chat.get_mess(),
                            username=username,
