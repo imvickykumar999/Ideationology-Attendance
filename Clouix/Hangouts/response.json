@@ -1,0 +1,44 @@
+{
+  "name": "spaces/65_E74AAAAE/messages/bXHm3mGeNF0.bXHm3mGeNF0",
+  "sender": {
+    "name": "users/114022495153014004089",
+    "displayName": "bot",
+    "avatarUrl": "",
+    "email": "",
+    "domainId": "",
+    "type": "BOT",
+    "isAnonymous": false
+  },
+  "text": "hi",
+  "cards": [],
+  "cardsV2": [],
+  "previewText": "",
+  "annotations": [],
+  "thread": {
+    "name": "spaces/65_E74AAAAE/threads/bXHm3mGeNF0",
+    "retentionSettings": {
+      "state": "PERMANENT",
+      "expiryTimestamp": "0"
+    },
+    "threadKey": ""
+  },
+  "space": {
+    "name": "spaces/65_E74AAAAE",
+    "type": "ROOM",
+    "singleUserBotDm": false,
+    "threaded": false,
+    "displayName": "",
+    "spaceThreadingState": "UNTHREADED_MESSAGES",
+    "legacyGroupChat": false
+  },
+  "fallbackText": "",
+  "argumentText": "hi",
+  "attachment": [],
+  "threadReply": false,
+  "retentionSettings": {
+    "state": "PERMANENT",
+    "expiryTimestamp": "0"
+  },
+  "clientAssignedMessageId": "",
+  "createTime": "2022-12-06T09:34:15.521023Z"
+}
