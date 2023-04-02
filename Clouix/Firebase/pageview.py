@@ -7,7 +7,9 @@ def run():
     file = 'ideationology-4c639-firebase-adminsdk-5hfwu-5806b97f02.json'
     dir = os.path.join(path, file)
 
-    cred = credentials.Certificate(dir)
+    # cred = credentials.Certificate(dir)
+    cred = credentials.Certificate(file)
+
     url = 'https://ideationology-4c639-default-rtdb.asia-southeast1.firebasedatabase.app/'
     path = {'databaseURL' : url}
 
